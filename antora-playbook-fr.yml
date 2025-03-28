@@ -7,7 +7,7 @@ site:
 antora:
   extensions:
   - require: '@antora/lunr-extension'
-    languages: [en]
+    languages: [fr]
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
