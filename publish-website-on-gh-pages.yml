@@ -1,0 +1,49 @@
+name: Publish to GitHub Pages with Lunr Search Extension
+on:
+  push:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Configure Pages
+      uses: actions/configure-pages@v5
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    - name: Install Antora
+      run: npm i antora
+    - name: Install the Antora Lunr Extension
+      run: npm i @antora/lunr-extension@1.0.0-alpha.8 # force this version to preent issue with node @node-rs/jieba see --> https://antora.zulipchat.com/#narrow/channel/312271-users.2Flunr-extension/topic/.E2.9C.94.20Chinese.20indexation.3A.20Cannot.20find.20module.20'nodejieba'/near/495313442
+    - name: Install chinese indexing support for Lunr # See https://gitlab.com/antora/antora-lunr-extension#user-content-support-for-other-languages
+      run: npm i nodejieba
+    - name: Generate English Site
+      run: npx antora --to-dir build/sites/en antora/antora-playbook-en.yml
+    - name: Generate French Site
+      run: npx antora --to-dir build/sites/fr antora/antora-playbook-fr.yml
+    # - name: Generate Spanish Site
+    #   run: npx antora --to-dir build/sites/es antora/antora-playbook-es.yml
+    # - name: Generate Chinese Site
+    #   run: npx antora --to-dir build/sites/zh antora/antora-playbook-zh.yml --stacktrace
+    - name: Upload Artifacts
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: build/sites
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
