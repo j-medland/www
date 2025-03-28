@@ -33,7 +33,7 @@ jobs:
     - name: Install chinese indexing support for Lunr # See https://gitlab.com/antora/antora-lunr-extension#user-content-support-for-other-languages
       run: npm i nodejieba
     - name: Generate English Site
-      run: npx antora --to-dir build/sites/en antora/antora-playbook-en.yml
+      run: npx antora --to-dir build/sites/en antora-playbook-en.yml
     # - name: Generate French Site
     #   run: npx antora --to-dir build/sites/fr antora/antora-playbook-fr.yml
     # - name: Generate Spanish Site
