@@ -1,24 +1,27 @@
 site:
-  title: Documentation CTI
+  title: LabVIEW Community Training Initiative
   # the 404 page and sitemap files only get generated when the url property is set
-  url: https://labviewcommunitytraining.github.io/website/fr
-  start_page: cti-doc::index.adoc
+  url: https://labviewcommunitytraining.github.io/www/fr
+  start_page: ROOT::index.adoc
   robots: allow
 antora:
   extensions:
   - require: '@antora/lunr-extension'
-    languages: [fr]
+    languages: [en]
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
 content:
   sources:
-  - url: https://github.com/LabVIEWCommunityTraining/cti-documentation
-    branches: [v*.*]
-    start_paths: cti-doc_fr/content, cti-doc_fr/home
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
+    branches: main
+    start_paths: home_fr
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
+    branches: [v1.0]
+    start_paths: fr
 asciidoc:
   attributes:
-    page-component-order: 'cti-doc'
+    page-component-order: 'template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
@@ -27,7 +30,7 @@ asciidoc:
     lv: LabVIEW(TM)
 ui:
   bundle:
-    url: ./../user-interface/build/ui-bundle.zip
+    url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
   - path: ui.yml
     contents: |

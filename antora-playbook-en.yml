@@ -1,5 +1,5 @@
 site:
-  title: CTI documentation
+  title: LabVIEW Community Training Initiative
   # the 404 page and sitemap files only get generated when the url property is set
   url: https://labviewcommunitytraining.github.io/www/en
   start_page: ROOT::index.adoc
