@@ -34,8 +34,8 @@ jobs:
       run: npm i nodejieba
     - name: Generate English Site
       run: npx antora --to-dir build/sites/en antora/antora-playbook-en.yml
-    - name: Generate French Site
-      run: npx antora --to-dir build/sites/fr antora/antora-playbook-fr.yml
+    # - name: Generate French Site
+    #   run: npx antora --to-dir build/sites/fr antora/antora-playbook-fr.yml
     # - name: Generate Spanish Site
     #   run: npx antora --to-dir build/sites/es antora/antora-playbook-es.yml
     # - name: Generate Chinese Site
