@@ -28,6 +28,8 @@ asciidoc:
     page-pagination: ''
     # shortcut
     lv: LabVIEW(TM)
+    wip: Cette section est en cours de construction
+    nt: Besoin de traduction depuis
 ui:
   bundle:
     url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
