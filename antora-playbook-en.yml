@@ -21,7 +21,7 @@ content:
     start_paths: www/en
 asciidoc:
   attributes:
-    page-component-order: 'contribute, template'
+    page-component-order: 'contribute, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
