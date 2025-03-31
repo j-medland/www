@@ -63,7 +63,7 @@ ui:
   bundle:
     url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
-  - path: ./antora-navigator-extension/example/supplemental-ui
+  - path: ./supplemental-ui
   # - path: partials
   #   contents: ./antora-navigator-extension/example/supplemental-ui/partials
   # - path: js
