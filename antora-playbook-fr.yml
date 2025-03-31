@@ -18,7 +18,7 @@ content:
     start_paths: home_fr/home, home_fr/contribute
   - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
     branches: [v1.0]
-    start_paths: fr
+    start_paths: www/fr
 asciidoc:
   attributes:
     page-component-order: 'contribute, template'
