@@ -35,10 +35,10 @@ asciidoc:
     nt: Besoin de traduction depuis
     # French translation, courtesy of Nicolas Comet <nicolas.comet@gmail.com> with updates from Maheva Bagard Laursen <mblaursen@gbif.org> --> https://github.com/asciidoctor/asciidoctor/tree/main/data/locale
     appendix-caption: Annexe
-    appendix-refsig: {appendix-caption}
+    appendix-refsig: Annexe
     caution-caption: Attention
     chapter-signifier: Chapitre
-    chapter-refsig: {chapter-signifier}
+    chapter-refsig: Chapitre
     example-caption: Exemple
     figure-caption: Figure
     important-caption: Important
@@ -47,7 +47,7 @@ asciidoc:
     ifdef::manname-title[:manname-title: Nom]
     note-caption: Note
     part-signifier: Partie
-    part-refsig: {part-signifier}
+    part-refsig: Partie
     ifdef::preface-title[:preface-title: Préface]
     section-refsig: Section
     table-caption: Tableau
