@@ -63,13 +63,16 @@ ui:
   bundle:
     url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
-  - path: ./supplemental-ui
-  # - path: partials
-  #   contents: ./antora-navigator-extension/example/supplemental-ui/partials
-  # - path: js
-  #   contents: ./antora-navigator-extension/example/supplemental-ui/js
-  # - path: css
-  #   contents: ./antora-navigator-extension/example/supplemental-ui/css
+  - path: partials/footer-scripts.hbs
+    contents: ./supplemental-ui/partials/footer-scripts.hbs
+  - path: partials/head-meta.hbs
+    contents: ./supplemental-ui/partials/head-meta.hbs
+  - path: partials/nav.hbs
+    contents: ./supplemental-ui/partials/nav.hbs
+  - path: js/nav.js
+    contents: ./supplemental-ui/js/nav.js
+  - path: css/nav.css
+    contents: ./supplemental-ui/css/nav.css
   - path: ui.yml
     contents: |
       static_files:
