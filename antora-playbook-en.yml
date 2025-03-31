@@ -19,9 +19,12 @@ content:
   - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
     branches: [v1.0]
     start_paths: www/en
+  - url: https://github.com/LabVIEWCommunityTraining/cti-documentation
+    branches: [v1.0, v2.0]
+    start_paths: www/en
 asciidoc:
   attributes:
-    page-component-order: 'contribute, course-template'
+    page-component-order: 'contribute, course-labview, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
