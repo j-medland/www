@@ -15,13 +15,13 @@ content:
   sources:
   - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
     branches: main
-    start_paths: home_fr
+    start_paths: home_fr/home, home_fr/contribute
   - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
     branches: [v1.0]
     start_paths: fr
 asciidoc:
   attributes:
-    page-component-order: 'template'
+    page-component-order: 'contribute, template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
