@@ -8,6 +8,9 @@ antora:
   extensions:
   - require: '@antora/lunr-extension'
     languages: [fr]
+  - require: ./antora-navigator-extension
+    config_file: ./antora-navigator.yml
+
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
@@ -60,6 +63,13 @@ ui:
   bundle:
     url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
+  - path: ./antora-navigator-extension/example/supplemental-ui
+  # - path: partials
+  #   contents: ./antora-navigator-extension/example/supplemental-ui/partials
+  # - path: js
+  #   contents: ./antora-navigator-extension/example/supplemental-ui/js
+  # - path: css
+  #   contents: ./antora-navigator-extension/example/supplemental-ui/css
   - path: ui.yml
     contents: |
       static_files:
