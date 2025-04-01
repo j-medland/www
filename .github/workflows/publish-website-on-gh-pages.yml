@@ -34,14 +34,13 @@ jobs:
       run: npm i @antora/lunr-extension@1.0.0-alpha.8 # force this version to preent issue with node @node-rs/jieba see --> https://antora.zulipchat.com/#narrow/channel/312271-users.2Flunr-extension/topic/.E2.9C.94.20Chinese.20indexation.3A.20Cannot.20find.20module.20'nodejieba'/near/495313442
     - name: Install chinese indexing support for Lunr # See https://gitlab.com/antora/antora-lunr-extension#user-content-support-for-other-languages
       run: npm i nodejieba
-    - name: Install navigator extension
-      run: |
-        pwd
-        cd antora-navigator-extension 
-        npm ci
-        pwd
-        cd ..
-        pwd
+    # - name: Install navigator extension
+    #   run: |
+    #     cd antora-navigator-extension 
+    #     npm ci
+    #     pwd
+    #     cd ..
+    #     pwd
     - name: Generate English Site
       run: npx antora --to-dir build/sites/en antora-playbook-en.yml
     - name: Generate French Site
