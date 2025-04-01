@@ -9,7 +9,7 @@ antora:
   - require: '@antora/lunr-extension'
     languages: [fr]
   - require: ./antora-navigator-extension
-    config_file: ./antora-navigator.yml
+    config_file: ./antora-navigator-fr.yml
 
 urls:
   latest_version_segment: latest
@@ -18,7 +18,7 @@ content:
   sources:
   - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
     branches: main
-    start_paths: home_fr/home, home_fr/contribute
+    start_paths: fr
   - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
     branches: [v1.0]
     start_paths: www/fr
@@ -27,7 +27,7 @@ content:
     start_paths: www/fr
 asciidoc:
   attributes:
-    page-component-order: 'contribute, course-labview, course-template'
+    page-component-order: 'ROOT, course-labview, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
