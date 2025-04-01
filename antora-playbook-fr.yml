@@ -35,7 +35,7 @@ asciidoc:
     # shortcut
     lv: LabVIEW(TM)
     wip: Cette section est en cours de construction
-    nt: Besoin de traduction depuis
+    nt: Besoin de traduction depuis la version 
     # French translation, courtesy of Nicolas Comet <nicolas.comet@gmail.com> with updates from Maheva Bagard Laursen <mblaursen@gbif.org> --> https://github.com/asciidoctor/asciidoctor/tree/main/data/locale
     appendix-caption: Annexe
     appendix-refsig: Annexe
