@@ -59,7 +59,7 @@ asciidoc:
     warning-caption: 警告
 ui:
   bundle:
-    url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
+    url: https://labviewcommunitytraining.github.io/Website-UI/zh/ui-bundle.zip
   supplemental_files:
   - path: partials/footer-scripts.hbs
     contents: ./supplemental-ui/partials/footer-scripts.hbs
