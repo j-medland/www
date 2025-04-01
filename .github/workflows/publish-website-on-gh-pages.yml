@@ -36,8 +36,10 @@ jobs:
       run: npm i nodejieba
     - name: Install navigator extension
       run: |
+        pwd
         cd antora-navigator-extension 
         npm ci
+        pwd
     - name: Generate English Site
       run: npx antora --to-dir build/sites/en antora-playbook-en.yml
     - name: Generate French Site
