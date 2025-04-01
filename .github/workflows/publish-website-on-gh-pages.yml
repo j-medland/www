@@ -38,10 +38,10 @@ jobs:
       run: npx antora --to-dir build/sites/en antora-playbook-en.yml
     - name: Generate French Site
       run: npx antora --to-dir build/sites/fr antora-playbook-fr.yml
-    # - name: Generate Spanish Site
-    #   run: npx antora --to-dir build/sites/es antora/antora-playbook-es.yml
-    # - name: Generate Chinese Site
-    #   run: npx antora --to-dir build/sites/zh antora/antora-playbook-zh.yml --stacktrace
+    - name: Generate Spanish Site
+      run: npx antora --to-dir build/sites/es antora-playbook-es.yml
+    - name: Generate Chinese Site
+      run: npx antora --to-dir build/sites/zh antora-playbook-zh.yml
     - name: Upload Artifacts
       uses: actions/upload-pages-artifact@v3
       with:
