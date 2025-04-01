@@ -2,33 +2,75 @@ site:
   title: CTI文档
   # the 404 page and sitemap files only get generated when the url property is set
   url: https://labviewcommunitytraining.github.io/www/zh
-  start_page: cti-doc::index.adoc
+  start_page: ROOT::index.adoc
   robots: allow
 antora:
   extensions:
   - require: '@antora/lunr-extension'
     languages: [zh]
+  - require: ./antora-navigator-extension
+    config_file: ./antora-navigator-en.yml
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
 content:
   sources:
-  - url: https://github.com/LabVIEWCommunityTraining/www
-    branches: [v*.*]
-    start_paths: cti-doc_zh/content, cti-doc_zh/home
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
+    branches: main
+    start_paths: zh
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
+    branches: [v1.0]
+    start_paths: www/zh
+  - url: https://github.com/LabVIEWCommunityTraining/cti-documentation
+    branches: [v1.0, v2.0]
+    start_paths: www/zh
 asciidoc:
   attributes:
-    page-component-order: 'cti-doc'
+    page-component-order: ROOT, course-labview, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
     page-pagination: ''
     # shortcut
     lv: LabVIEW(TM)
+    wip: 此页正在编写中
+    # Traditional Chinese translation, courtesy of John Dong <dongwqs@gmail.com> --> https://github.com/asciidoctor/asciidoctor/tree/main/data/locale
+    appendix-caption: 附錄
+    appendix-refsig: {appendix-caption}
+    caution-caption: 注意
+    //:chapter-signifier: ???
+    //:chapter-refsig: {chapter-signifier}
+    example-caption: 示例
+    figure-caption: 圖表
+    important-caption: 重要
+    last-update-label: 最後更新
+    ifdef::listing-caption[:listing-caption: 列表]
+    ifdef::manname-title[:manname-title: 名稱]
+    note-caption: 筆記
+    //:part-signifier: ???
+    //:part-refsig: {part-signifier}
+    ifdef::preface-title[:preface-title: 序言]
+    //:section-refsig: ???
+    table-caption: 表格
+    tip-caption: 提示
+    toc-title: 目錄
+    untitled-label: 暫無標題
+    version-label: 版本
+    warning-caption: 警告
 ui:
   bundle:
-    url: ./../user-interface/build/ui-bundle.zip
+    url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
+  - path: partials/footer-scripts.hbs
+    contents: ./supplemental-ui/partials/footer-scripts.hbs
+  - path: partials/head-meta.hbs
+    contents: ./supplemental-ui/partials/head-meta.hbs
+  - path: partials/nav.hbs
+    contents: ./supplemental-ui/partials/nav.hbs
+  - path: js/nav.js
+    contents: ./supplemental-ui/js/nav.js
+  - path: css/nav.css
+    contents: ./supplemental-ui/css/nav.css
   - path: ui.yml
     contents: |
       static_files:

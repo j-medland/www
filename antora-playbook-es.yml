@@ -2,33 +2,76 @@ site:
   title: Documentación CTI
   # the 404 page and sitemap files only get generated when the url property is set
   url: https://labviewcommunitytraining.github.io/www/es
-  start_page: cti-doc::index.adoc
+  start_page: ROOT::index.adoc
   robots: allow
 antora:
   extensions:
   - require: '@antora/lunr-extension'
     languages: [es]
+  - require: ./antora-navigator-extension
+    config_file: ./antora-navigator-es.yml
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
 content:
   sources:
-  - url: https://github.com/LabVIEWCommunityTraining/www
-    branches: [v*.*]
-    start_paths: cti-doc_es/content, cti-doc_es/home
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
+    branches: main
+    start_paths: es
+  - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
+    branches: [v1.0]
+    start_paths: www/es
+  - url: https://github.com/LabVIEWCommunityTraining/cti-documentation
+    branches: [v1.0, v2.0]
+    start_paths: www/es
 asciidoc:
   attributes:
-    page-component-order: 'cti-doc'
+    page-component-order: 'ROOT, course-labview, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
     page-pagination: ''
     # shortcut
     lv: LabVIEW(TM)
+    wip: Esta pagina esta siendo escrita
+    nt: Necesito traducción de la página en
+    # Spanish translation, courtesy of Eddú Meléndez <eddu.melendez@gmail.com> with updates from Fede Mendez <federicomh@gmail.com> --> https://github.com/asciidoctor/asciidoctor/tree/main/data/locale
+    appendix-caption: Apéndice
+    appendix-refsig: Apéndice
+    caution-caption: Precaución
+    chapter-signifier: Capítulo
+    chapter-refsig: Capítulo
+    example-caption: Ejemplo
+    figure-caption: Figura
+    important-caption: Importante
+    last-update-label: Ultima actualización
+    ifdef::listing-caption[:listing-caption: Lista]
+    ifdef::manname-title[:manname-title: Nombre]
+    note-caption: Nota
+    part-signifier: Parte
+    part-refsig: Parte
+    ifdef::preface-title[:preface-title: Prefacio]
+    section-refsig: Sección
+    table-caption: Tabla
+    tip-caption: Sugerencia
+    toc-title: Tabla de Contenido
+    untitled-label: Sin título
+    version-label: Versión
+    warning-caption: Aviso
 ui:
   bundle:
-    url: ./../user-interface/build/ui-bundle.zip
+    url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
+  - path: partials/footer-scripts.hbs
+    contents: ./supplemental-ui/partials/footer-scripts.hbs
+  - path: partials/head-meta.hbs
+    contents: ./supplemental-ui/partials/head-meta.hbs
+  - path: partials/nav.hbs
+    contents: ./supplemental-ui/partials/nav.hbs
+  - path: js/nav.js
+    contents: ./supplemental-ui/js/nav.js
+  - path: css/nav.css
+    contents: ./supplemental-ui/css/nav.css
   - path: ui.yml
     contents: |
       static_files:
