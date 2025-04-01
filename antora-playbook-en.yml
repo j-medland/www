@@ -8,6 +8,8 @@ antora:
   extensions:
   - require: '@antora/lunr-extension'
     languages: [en]
+  - require: ./antora-navigator-extension
+    config_file: ./antora-navigator-en.yml
 urls:
   latest_version_segment: latest
   latest_version_segment_strategy: redirect:to
@@ -15,7 +17,7 @@ content:
   sources:
   - url: https://github.com/LabVIEWCommunityTraining/Website-Home-Section
     branches: main
-    start_paths: home_en/home, home_en/contribute
+    start_paths: en
   - url: https://github.com/LabVIEWCommunityTraining/Website-Course-Template
     branches: [v1.0]
     start_paths: www/en
@@ -24,7 +26,7 @@ content:
     start_paths: www/en
 asciidoc:
   attributes:
-    page-component-order: 'contribute, course-labview, course-template'
+    page-component-order: 'ROOT, course-labview, course-template'
     experimental: ''
     idprefix: ''
     idseparator: '-'
@@ -35,8 +37,18 @@ asciidoc:
     nt: Need translation from
 ui:
   bundle:
-    url: https://labviewcommunitytraining.github.io/Website-UI/en/ui-bundle.zip
+    url: https://labviewcommunitytraining.github.io/Website-UI/fr/ui-bundle.zip
   supplemental_files:
+  - path: partials/footer-scripts.hbs
+    contents: ./supplemental-ui/partials/footer-scripts.hbs
+  - path: partials/head-meta.hbs
+    contents: ./supplemental-ui/partials/head-meta.hbs
+  - path: partials/nav.hbs
+    contents: ./supplemental-ui/partials/nav.hbs
+  - path: js/nav.js
+    contents: ./supplemental-ui/js/nav.js
+  - path: css/nav.css
+    contents: ./supplemental-ui/css/nav.css
   - path: ui.yml
     contents: |
       static_files:

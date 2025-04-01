@@ -1,0 +1,8 @@
+groups:
+- root: true
+  components: 'ROOT'
+- title: Courses
+  components: 'course-*'
+# - title: Material
+#   components: ['*','!contribute']
+output_file: site-navigation-data.js

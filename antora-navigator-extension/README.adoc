@@ -1,0 +1,176 @@
+= Antora Navigator Extension
+:icons: font
+
+An Antora extension that exports the navigation data to JavaScript so the navigation tree can be constructed in the browser.
+
+WARNING: This is alpha software!
+That means the extension is experimental and likely to change at any time without notice.
+You're free to test it and give feedback, but take caution when relying on it in a production site.
+
+== Quickstart
+
+You can find an example of how to use this extension in the link:example[example] directory.
+The example includes a configuration file as well as the required UI files that build, style, and provide the behavior for the navigation tree.
+
+NOTE: The script provided by this extension ([.path]_data/js/nav.js_) does not control the layout of the navigation pane and its container.
+Rather, it only populates the pane with navigation groups and items and adds expand/collapse/focus behavior the tree it adds.
+The layout and behavior of the navigation pane itself is controlled by the nav script provided by the UI ([.path]_src/js/01-nav.js_ in the default UI). 
+That script is expected to recognize it's no longer in charge of the navigation tree and short-circuit after registering the layout event handlers.
+
+== Configuration
+
+In addition to exporting the navigation data, this extension allows you to organize Antora components into navigation groups.
+These groups are defined in the [.path]_antora-navigator.yml_ file by default, though the location of this file is configurable.
+
+Here's an example of a configuration file for this extension:
+
+.antora-navigator.yml
+[,yaml]
+----
+groups:
+- root: true <.>
+  components: home
+- title: Demo <.>
+  components: 'component-*'
+- title: Asciidoctor <.>
+  components: ['*', '!asciidoctorj']
+output_file: site-navigation-data.js <.>
+----
+<.> Sets the root group that will be displayed first in the navigation menu without a parent.
+By default, this group contains a link to the main page of the site.
+<.> Defines a new component group.
+This group has the title "`Demo`" and contains all components (and their versions) that are matched by the pattern `+component-*+`.
+<.> Defines another component group.
+This group has the title "`Asciidoctor`" and contains all remaining components (and their versions) except for *asciidoctorj*, which is excluded by the negated pattern `!asciidoctorj`.
+<.> Configures the path of the exported data file.
+This path must match the value of the `site-navigation-data-path` attribute defined in the Antora playbook.
+
+It's also possible to nest components in the navigation.
+You do so by defining subcomponents.
+To create a subcomponent, you must identify it's parent component.
+The extension will then rearrange the components in the exported data to honor this hierarchy.
+
+Let's look at how to organize the components *component-a* and *component-b* underneath a component named *component-xyz*.
+
+[,yaml]
+----
+subcomponents:
+- parent: component-xyx
+  components: [component-a, component-b]
+----
+
+The rest of the [.path]_antora-navigator.yml_ file remains as is.
+
+== UI settings
+
+This repository contains link:example/supplemental-ui[supplemental UI files] that are required in order to use this extension.
+The Handlebars templates replace the files with the same name in the Antora default UI.
+If you're using a custom UI, you will need to make the equivalent updates to your UI.
+
+To start, you will need to add the following lines to your footer partial (e.g., `footer-scripts.hbs`):
+
+[,html]
+----
+<script src="{{{siteRootPath}}}/site-navigation-data.js"></script>
+<script id="navigator-script" src="{{{uiRootPath}}}/js/nav.js"></script>
+<script id="site-script" src="{{{uiRootPath}}}/js/site.js" data-ui-root-path="{{{uiRootPath}}}"></script>
+----
+
+In your header partial (e.g., `head-meta.hbs`), you will need to add this line:
+
+[,html]
+----
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/nav.css">
+----
+
+You must include the files [.path]_js/nav.js_ and [.path]_css/nav.css_ in your UI bundle.
+
+In your navigation partial (e.g., `nav.hbs`), you will need to replace it with the following content:
+
+[,html]
+----
+<aside class="nav-container nav-sidebar">
+  <nav class="nav" aria-label="Docs">
+  </nav>
+</aside>
+----
+
+=== Using component icons in the navigation
+
+This extension allows you to use icons for navigation groups.
+By default, a single icon is used for all navigation groups.
+
+If you'd like to use different icons, you can configure them using iconsdefs in the page.
+This extension looks for the following icon names:
+
+* icon-nav-group
+* icon-nav-component
+* icon-nav-component-<component-name> (optional)
+* icon-nav-item-toggle
+* icon-nav-version
+
+You can define icondefs statically in the footer partial (e.g., `footer-scripts.hbs`):
+
+[,html]
+----
+<div id="icondefs" hidden>
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <desc>Octicons v17.0.0 by GitHub - https://primer.style/octicons/ - License: MIT</desc>
+    <!-- comment out icon-nav-group symbol to hide the down arrow next to a group -->
+    <symbol id="icon-nav-group" viewBox="0 0 16 16">
+      <path d="m12.78 5.345a0.75 0.75 0 0 1 0 1.06l-4.25 4.25a0.75 0.75 0 0 1-1.06 0l-4.25-4.25a0.75 0.75 0 0 1 1.06-1.06l3.72 3.72 3.72-3.72a0.75 0.75 0 0 1 1.06 0z"/>
+    </symbol>
+    <symbol id="icon-nav-component" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.543 7.25h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.506 6.506 0 00-4.666 5.5zm2.733 1.5H1.543a6.506 6.506 0 004.666 5.5 11.13 11.13 0 01-.352-.552c-.715-1.192-1.437-2.874-1.581-4.948zm1.504 0h4.44a9.637 9.637 0 01-1.363 4.177c-.306.51-.612.919-.857 1.215a9.978 9.978 0 01-.857-1.215A9.637 9.637 0 015.78 8.75zm4.44-1.5H5.78a9.637 9.637 0 011.363-4.177c.306-.51.612-.919.857-1.215.245.296.55.705.857 1.215A9.638 9.638 0 0110.22 7.25zm1.504 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.506 6.506 0 004.666-5.5h-2.733zm2.733-1.5h-2.733c-.144-2.074-.866-3.756-1.58-4.948a11.738 11.738 0 00-.353-.552 6.506 6.506 0 014.666 5.5zM8 0a8 8 0 100 16A8 8 0 008 0z"/>
+    </symbol>
+    <symbol id="icon-nav-item-toggle" viewBox="0 0 16 16">
+      <path d="m5.345 3.22a0.75 0.75 0 0 1 1.06 0l4.25 4.25a0.75 0.75 0 0 1 0 1.06l-4.25 4.25a0.75 0.75 0 0 1-1.06-1.06l3.72-3.72-3.72-3.72a0.75 0.75 0 0 1 0-1.06z" fill-rule="evenodd"/>
+    </symbol>
+    <symbol id="icon-nav-version" viewBox="0 0 16 16">
+      <path d="m12.78 5.345a0.75 0.75 0 0 1 0 1.06l-4.25 4.25a0.75 0.75 0 0 1-1.06 0l-4.25-4.25a0.75 0.75 0 0 1 1.06-1.06l3.72 3.72 3.72-3.72a0.75 0.75 0 0 1 1.06 0z"/>
+    </symbol>
+  </svg>
+</div>
+----
+
+You can customize the icon for each component by defining an icon that matches the pattern `icon-nav-component-<component-name>`, where `<component-name>` is the name of the component defined in [.path]_antora.yml_.
+For example, to add a custom icon for a component named *acme*, you'd add an entry for `icon-nav-component-acme` to the icondefs:
+
+[,xml]
+----
+<symbol id="icon-nav-component" viewBox="0 0 16 16">
+  <path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+</symbol>
+----
+
+Rather than putting the iconsdefs directly into the template (and thus the HTML), you could load the iconsdefs from a shared JavaScript file.
+That configuration is left as an exercise for the reader.
+
+== Localization of navigation items
+
+This extension uses the English language by default in the following cases:
+
+* The name of the root group in the navigation (default: Home)
+* Version labels (defaults: Current version, Prerelease versions, Previous versions)
+
+You can set localized values for these entries on the script tag that loads the navigator script.
+The script tag must have `id="navigator-script"` so that the script can identify it.
+
+[,html]
+----
+<script id="navigator-script" src="{{{uiRootPath}}}/js/nav.js"
+  data-t-home="Page d’accueil"
+  data-t-current-version="Version actuelle"
+  data-t-previous-versions="Versions précédentes"
+  data-t-prerelease-versions="Versions préliminaires">
+</script>
+----
+
+These translations can be further parameterized by any means using template engine variables.
+
+== Copyright and License
+
+Copyright (C) 2022-present by OpenDevise Inc. and the individual contributors of this project.
+
+Use of this software is granted under the terms of the https://www.mozilla.org/en-US/MPL/2.0/[Mozilla Public License Version 2.0] (MPL-2.0).
+See link:LICENSE[] to find the full license text.
