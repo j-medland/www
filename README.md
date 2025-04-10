@@ -11,22 +11,22 @@ erDiagram
 ```mermaid
 flowchart LR
     subgraph "<i class="fa-brands fa-github"></i> www"
-        subgraph en-www["<i class="fa-solid fa-folder-open"></i> en"]
+        subgraph en-www["📂 en"]
             en-antora-playbook(antora-playbook.yml)
         end
     end
     subgraph "<i class="fa-brands fa-github"></i> Website-UI"
-        subgraph en-ui["<i class="fa-solid fa-folder-open"></i> en"]
+        subgraph en-ui["📂 en"]
             en-ui-bundle(ui-bundle.zip)-->en-www
         end
     end
     subgraph "<i class="fa-brands fa-github"></i> Website-Home-Section"
-        subgraph en-hs["<i class="fa-solid fa-folder-open"></i> en"]
+        subgraph en-hs["📂 en"]
             en-hs-content(ui-bundle.zip)-->en-www
         end
         end
     subgraph "<i class="fa-brands fa-github"></i> cti-documentation"
-        subgraph en-doc["<i class="fa-solid fa-folder-open"></i> en"]
+        subgraph en-doc["📂 en"]
             en-conv1(<i class="fas fa-code-branch"></i> V1.0)-->en-www
             en-conv2(<i class="fas fa-code-branch"></i> V2.0)-->en-www
         end
