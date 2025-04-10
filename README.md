@@ -3,7 +3,7 @@ This repository contains the Antora playbook and the GitHub actions needed to bu
 
 ```mermaid
 flowchart LR
-    subgraph www["&lt;img src='https://github.githubassets.com/favicons/favicon.png'&gt; www"]
+    subgraph www["<img src='https://github.githubassets.com/favicons/favicon.png'> www"]
         subgraph en-www["📂 en"]
             en-antora-playbook(antora-playbook.yml)
         end
