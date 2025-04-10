@@ -15,7 +15,7 @@ The diagram below visualizes how content from each repository is combined for th
 ```mermaid
 flowchart LR
     subgraph www["📚 www"]
-        en-antora-playbook(antora-playbook-en.yml)
+        en-antora-playbook["📜 antora-playbook-en.yml"]
     end
     subgraph website-ui["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>"]
         en-ui["📂 en"]-->|🛠️ github-action|en-ui-bundle
@@ -36,4 +36,4 @@ flowchart LR
     en-antora-playbook-->|🛠️ github-action|en-output
 ```
 
-(key: 📚 repository, 📂 folder, 🌿 git-branch, 📦 zip-file, 🌐 published-site)
+(key: 📚 repository, 📂 folder, 🌿 git-branch, 📦 zip-file, 🌐 published-site, 📜 script, 🛠️ automation)
