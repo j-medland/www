@@ -3,7 +3,7 @@ This repository contains the Antora playbook and the GitHub actions needed to bu
 
 ```mermaid
 flowchart LR
-    subgraph " ![Tux, the Linux mascot](/assets/images/tux.png) www"
+    subgraph " <a href="#">hello</a> www"
         subgraph en-www["📂 en"]
             en-antora-playbook(antora-playbook.yml)
         end
