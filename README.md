@@ -15,15 +15,15 @@ The diagram below visualizes how content from each repository is combined for th
 ```mermaid
 flowchart LR
     subgraph www["📚 www"]
-        en-antora-playbook(antora-playbook-en.yml)--->en-output
+        en-antora-playbook(antora-playbook-en.yml)
     end
     subgraph website-ui["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>"]
-        en-ui["📂 en"]--->|🛠️ github-action|en-ui-bundle
+        en-ui["📂 en"]-->|🛠️ github-action|en-ui-bundle
         en-ui-bundle[en/ui-bundle.zip]-->en-antora-playbook
     end
     subgraph website-home["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-home-section'>Website-Home-Section</a>"]
         en-hs["📂 en"]-->en-antora-playbook
-        end
+    end
     subgraph cti-docs["📚 <a href='https://github.com/LabVIEWCommunityTraining/cti-documentation'>cti-documentation</a>"]
         subgraph v1["🌿 V1.0"]
             en-conv1(📂www/en)-->en-antora-playbook
@@ -33,6 +33,7 @@ flowchart LR
         end
     end
     en-output["🌐 www/en"]
+    en-antora-playbook-->|🛠️ github-action|en-output
 ```
 
 (key: 📚 repository, 📂 folder, 🌿 git-branch)
