@@ -13,14 +13,11 @@ flowchart LR
         en-antora-playbook(antora-playbook-en.yml)
     end
     subgraph website-ui["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>"]
-        subgraph en-ui["📂 en"]
-            en-ui-bundle(ui-bundle.zip)-->en-antora-playbook
-        end
+        en-ui["📂 en"]--->|🛠️ github-action|en-ui-bundle
+        en-ui-bundle[ui-bundle.zip]-->en-antora-playbook
     end
     subgraph website-home["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-home-section'>Website-Home-Section</a>"]
-        subgraph en-hs["📂 en"]
-            en-hs-content(ui-bundle.zip)-->en-antora-playbook
-        end
+        en-hs["📂 en"]-->en-antora-playbook
         end
     subgraph cti-docs["📚 <a href='https://github.com/LabVIEWCommunityTraining/cti-documentation'>cti-documentation</a>"]
         subgraph v1["🌿 V1.0"]
@@ -31,3 +28,5 @@ flowchart LR
         end
     end
 ```
+
+(key: 📚 repository, 📂 folder, 🌿 git-branch)
