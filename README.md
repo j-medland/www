@@ -14,8 +14,8 @@ The content for each language's site is constructed from multiple components man
 The diagram below visualizes how content from each repository is combined for the `en` (English) language site but the method is the same for the `es` (Spanish), `fr` (French), `zh` (Chinese) sites.
 
 ```mermaid
-flowchart LR
-    subgraph www["📚 www"]
+flowchart TB
+    subgraph www["`📚 www (this repo)`"]
         en-antora-playbook["📜 antora-playbook-en.yml"]
     end
     subgraph website-ui["`📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>`"]
