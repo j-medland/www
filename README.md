@@ -19,7 +19,7 @@ flowchart LR
     end
     subgraph website-ui["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>"]
         en-ui["📂 en"]-->|🛠️ github-action|en-ui-bundle
-        en-ui-bundle[en/ui-bundle.zip]-->en-antora-playbook
+        en-ui-bundle["📦 en/ui-bundle.zip"]-->en-antora-playbook
     end
     subgraph website-home["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-home-section'>Website-Home-Section</a>"]
         en-hs["📂 en"]-->en-antora-playbook
@@ -36,4 +36,4 @@ flowchart LR
     en-antora-playbook-->|🛠️ github-action|en-output
 ```
 
-(key: 📚 repository, 📂 folder, 🌿 git-branch)
+(key: 📚 repository, 📂 folder, 🌿 git-branch, 📦 zip-file, 🌐 published-site)
