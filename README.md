@@ -1,6 +1,14 @@
 # Website
 This repository contains the Antora playbook and the GitHub actions needed to build and publish the website
 
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+```mermaid
 flowchart LR
     subgraph "<i class="fa-brands fa-github"></i> www"
         subgraph en-www["<i class="fa-solid fa-folder-open"></i> en"]
@@ -23,3 +31,4 @@ flowchart LR
             en-conv2(<i class="fas fa-code-branch"></i> V2.0)-->en-www
         end
     end
+```
