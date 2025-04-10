@@ -2,15 +2,8 @@
 This repository contains the Antora playbook and the GitHub actions needed to build and publish the website
 
 ```mermaid
-erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-```
-
-```mermaid
 flowchart LR
-    subgraph "<i class="fa-brands fa-github"></i> www"
+    subgraph "&lt;img src&#61;&#39;https://iconscout.com/ms-icon-310x310.png&#39; width&#61;&#39;30&#39; /&gt; www"
         subgraph en-www["📂 en"]
             en-antora-playbook(antora-playbook.yml)
         end
