@@ -16,11 +16,10 @@ The diagram below visualizes how content from each repository is combined for th
 ```mermaid
 flowchart TB
     subgraph www["`📚 www (this repo)`"]
-        en-antora-playbook["📜 antora-playbook-en.yml"]
+        en-antora-playbook["📜 antora-playbook-en.yml"] ---|An update to the dependency-repositories will trigger this action| github-www-build[🛠️ github-action]
     end
     subgraph website-ui["`📚 <a href='https://github.com/LabVIEWCommunityTraining/website-ui'>Website-UI</a>`"]
-        en-ui["📂 en"]-->|🛠️ github-action|en-ui-bundle
-        en-ui-bundle["📦 en/ui-bundle.zip"]-->en-antora-playbook
+        en-ui["📂 en"]---github-bundle-build[🛠️ github-action]
     end
     subgraph website-home["📚 <a href='https://github.com/LabVIEWCommunityTraining/website-home-section'>Website-Home-Section</a>"]
         en-hs["📂 en"]-->en-antora-playbook
@@ -38,8 +37,12 @@ flowchart TB
             en-templatev1(📂www/en)-->en-antora-playbook
         end
     end
+    github-bundle-build --> en-ui-bundle["📦 en/ui-bundle.zip"]-->en-antora-playbook
     en-output["🌐 www/en"]
-    en-antora-playbook-->|🛠️ github-action|en-output
+    github-www-build --> en-output
+    style github-www-build stroke-width:0px
+    style github-bundle-build stroke-width:0px
+    
 ```
 
 (key: 📚 repository, 📂 folder, 🌿 git-branch, 📦 zip-file, 🌐 published-site, 📜 script, 🛠️ automation)
